@@ -29,3 +29,18 @@ Route::get("/likeDrink/{likeText}", [ pudController::class, "getLikeDrinks"]);
 Route::get("/between/{value1}/{value2}", [ pudController::class, "getLess30"]);
 
 Route::get("/adddrink", [ pudController::class, "addDrink"]);
+
+Route::get("/drinkWtype", [pudController::class, "getDrinkWithType"]);
+
+Route::get("/drinkWtype2", [pudController::class, "getLeftDrink"]);
+
+Route::get("/drinkWtype3", [pudController::class, "getrightDrink"]);
+
+Route::get("/aldrinkstable", [pudController::class, "getAllableData"]);
+
+Route::get("/getlastid", [pudController::class, "getLastId"]);
+
+Route::get("/deletedrink", [pudController::class, "deleteDrink"]);
+
+Route::get("/deletetype", [pudController::class, "deleteType"]);
+

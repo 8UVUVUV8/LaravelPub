@@ -44,4 +44,91 @@ class pudController extends Controller
 
         return $drink;
     }
+
+    public function getDrinkWithType(){
+
+        $drinks = DB::table( "drinks")->
+            select(
+                "drinks.drink as Ital",
+                "drinks.amount as Mennyiség",
+                "types.type as Típus"
+            )->join(
+                "types", "drinks.type_id", "=", "types.id"
+            )->get();
+
+        return $drinks;
+    }
+
+    public function getLeftDrink(){
+
+        $drinks = DB::table( "drinks" )->
+        select(
+            "drinks.drink as Ital",
+            "drinks.amount as Mennyiség",
+            "types.type as Típus"
+        )->
+        leftJoin(
+            "types", "drinks.type_id", "=", "types.id"
+        )->
+        get();
+
+        return $drinks;
+    }
+
+    public function getrightDrink(){
+
+        $drinks = DB::table( "drinks" )->
+        select(
+            "drinks.drink as Ital",
+            "drinks.amount as Mennyiség",
+            "types.type as Típus"
+        )->
+        rightJoin(
+            "types", "drinks.type_id", "=", "types.id"
+        )->
+        get();
+
+        return $drinks;
+    }
+
+    public function getAllableData(){
+
+
+        $drinks = DB::table( "drinks")->
+        select(
+            "drinks.drink as Ital",
+            "drinks.amount as Mennyiség",
+            "types.type as Típus",
+            "packages.package as Kiszerelés"
+        )->join(
+            "types", "drinks.type_id", "=", "types.id"
+        )->join(
+            "packages", "drinks.package_id", "=", "packages.id"
+        )->get();
+
+    return $drinks;
+ 
+
+    }
+
+    public function getLastId(){
+        $id = DB::table("types")->insertGetId([
+            "type" => "Zacskos"
+        ]
+        );
+
+        return $id;
+    }
+
+    public function deleteDrink(){
+        DB::table( "drinks" )->where( "drink", "Kóla" )->delete(); 
+    }
+
+
+    public function deleteType(){
+        DB::table( "types" )->where( "type", "Zacskos" )->delete(); 
+
+        return "ok";
+    }
+
 }
